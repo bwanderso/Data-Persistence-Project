@@ -12,6 +12,7 @@ public class MainManager : MonoBehaviour
 
     public Text ScoreText;
     public GameObject GameOverText;
+    public Text HighScoreText;
     
     private bool m_Started = false;
     private int m_Points;
@@ -36,6 +37,8 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        RefreshHighScoreText();
     }
 
     private void Update()
@@ -55,9 +58,14 @@ public class MainManager : MonoBehaviour
         }
         else if (m_GameOver)
         {
+            SetHighScore();
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape)) {
+                SceneManager.LoadScene( 0 );
             }
         }
     }
@@ -72,5 +80,31 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+    }
+
+    public void RefreshHighScoreText() {
+        if (ScoreManager.Instance == null) {
+            Debug.Log( "No Score Manager Found.  Are you running this scene separately?" );
+            return;
+        }
+
+        if (ScoreManager.Instance.highScore > 0 ) {
+            HighScoreText.text = "Best Score : " + ScoreManager.Instance.playerName + " : " + ScoreManager.Instance.highScore;
+        }
+
+    }
+
+    public void SetHighScore() {
+        if (ScoreManager.Instance == null) {
+            Debug.Log( "No Score Manager Found.  Are you running this scene separately?" );
+            return;
+        }
+
+        if (m_Points > ScoreManager.Instance.highScore) {
+            ScoreManager.Instance.highScore = m_Points;
+            RefreshHighScoreText();
+
+            //TO DO -- Save High Score to Disk
+        }
     }
 }
