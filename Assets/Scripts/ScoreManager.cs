@@ -7,8 +7,10 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    public string playerName;
+    public string highScorePlayerName;
     public int highScore;
+
+    public string currentPlayerName;
 
     public void Awake() {
         if (Instance== null) {
@@ -30,7 +32,7 @@ public class ScoreManager : MonoBehaviour
     public void SaveHighScore() {
         HighScore saveData = new HighScore();
 
-        saveData.playerName = this.playerName;
+        saveData.playerName = this.highScorePlayerName;
         saveData.highScore = this.highScore;
 
         string jsonString = JsonUtility.ToJson( saveData );
@@ -44,7 +46,7 @@ public class ScoreManager : MonoBehaviour
             string json = File.ReadAllText( path );
             HighScore saveData = JsonUtility.FromJson<HighScore>(json);
 
-            this.playerName = saveData.playerName;
+            this.highScorePlayerName = saveData.playerName;
             this.highScore = saveData.highScore;
         }
     }

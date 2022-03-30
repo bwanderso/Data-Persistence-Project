@@ -89,7 +89,7 @@ public class MainManager : MonoBehaviour
         }
 
         if (ScoreManager.Instance.highScore > 0 ) {
-            HighScoreText.text = "Best Score : " + ScoreManager.Instance.playerName + " : " + ScoreManager.Instance.highScore;
+            HighScoreText.text = "Best Score : " + ScoreManager.Instance.highScorePlayerName + " : " + ScoreManager.Instance.highScore;
         }
 
     }
@@ -102,6 +102,7 @@ public class MainManager : MonoBehaviour
 
         if (m_Points > ScoreManager.Instance.highScore) {
             ScoreManager.Instance.highScore = m_Points;
+            ScoreManager.Instance.highScorePlayerName = ScoreManager.Instance.currentPlayerName;
             RefreshHighScoreText();
 
             //TO DO -- Save High Score to Disk

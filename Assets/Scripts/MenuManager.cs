@@ -16,17 +16,24 @@ public class MenuManager : MonoBehaviour
 
     public void Start() {
         ScoreManager.Instance.LoadHighScore();
-        if (ScoreManager.Instance.highScore  > 0 ) {
-            bestScoreText.text = "Best Score : " + ScoreManager.Instance.playerName + " : " + ScoreManager.Instance.highScore;
-            playerNameTextField.text = ScoreManager.Instance.playerName;
-        } else {
+        if (ScoreManager.Instance.highScore  > 0 )
+        {
+            bestScoreText.text = "Best Score : " + ScoreManager.Instance.highScorePlayerName + " : " + ScoreManager.Instance.highScore;
+           
+            if ( ScoreManager.Instance.currentPlayerName != null )
+            {
+                playerNameTextField.text = ScoreManager.Instance.currentPlayerName;
+            }
+        }
+        else
+        {
             bestScoreText.text = "Best Score : 0 : 0";
         }
 
     }
 
     public void UpdatePlayerName() {
-        ScoreManager.Instance.playerName = playerNameTextField.text;
+        ScoreManager.Instance.currentPlayerName = playerNameTextField.text;
     }
 
     public void StartGame() {

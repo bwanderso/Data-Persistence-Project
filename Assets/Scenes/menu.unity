@@ -1109,7 +1109,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Best Score : JohnDoe : 0'
+  m_Text: 'Best Score : 0 : 0'
 --- !u!222 &877643116
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1226,8 +1226,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d1d8f6f77df4c5f9e578e44703e60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
+  highScorePlayerName: 
   highScore: 0
+  currentPlayerName: 
 --- !u!4 &1054913249
 Transform:
   m_ObjectHideFlags: 0
