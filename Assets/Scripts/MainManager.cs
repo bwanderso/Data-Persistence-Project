@@ -105,7 +105,9 @@ public class MainManager : MonoBehaviour
             ScoreManager.Instance.highScorePlayerName = ScoreManager.Instance.currentPlayerName;
             RefreshHighScoreText();
 
-            //TO DO -- Save High Score to Disk
+
+            // Save the record.
+            ScoreManager.Instance.SaveHighScore();
         }
     }
 }
